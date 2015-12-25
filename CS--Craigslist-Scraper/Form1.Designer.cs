@@ -30,41 +30,52 @@
         {
             this.mainTabWindow = new System.Windows.Forms.TabControl();
             this.mainTab = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
-            this.startButton = new System.Windows.Forms.Button();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.startButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.tbScrape = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.browserTab = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.outputTab = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.scrapeOutputMainSplit = new System.Windows.Forms.SplitContainer();
-            this.tbScrape = new System.Windows.Forms.TextBox();
             this.optionsTab = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.mainTabWindow.SuspendLayout();
             this.mainTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
             this.browserTab.SuspendLayout();
-            this.outputTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scrapeOutputMainSplit)).BeginInit();
-            this.scrapeOutputMainSplit.Panel1.SuspendLayout();
-            this.scrapeOutputMainSplit.Panel2.SuspendLayout();
-            this.scrapeOutputMainSplit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -75,93 +86,265 @@
             // 
             this.mainTabWindow.Controls.Add(this.mainTab);
             this.mainTabWindow.Controls.Add(this.browserTab);
-            this.mainTabWindow.Controls.Add(this.outputTab);
             this.mainTabWindow.Controls.Add(this.optionsTab);
             this.mainTabWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabWindow.Location = new System.Drawing.Point(0, 0);
             this.mainTabWindow.Name = "mainTabWindow";
             this.mainTabWindow.SelectedIndex = 0;
-            this.mainTabWindow.Size = new System.Drawing.Size(737, 646);
+            this.mainTabWindow.Size = new System.Drawing.Size(1103, 942);
             this.mainTabWindow.TabIndex = 0;
             // 
             // mainTab
             // 
             this.mainTab.BackColor = System.Drawing.Color.Gainsboro;
-            this.mainTab.Controls.Add(this.label6);
-            this.mainTab.Controls.Add(this.button4);
-            this.mainTab.Controls.Add(this.button5);
-            this.mainTab.Controls.Add(this.label5);
-            this.mainTab.Controls.Add(this.label4);
-            this.mainTab.Controls.Add(this.button2);
-            this.mainTab.Controls.Add(this.button3);
-            this.mainTab.Controls.Add(this.button1);
-            this.mainTab.Controls.Add(this.startButton);
-            this.mainTab.Controls.Add(this.trackBar1);
-            this.mainTab.Controls.Add(this.label1);
+            this.mainTab.Controls.Add(this.splitContainer3);
             this.mainTab.Location = new System.Drawing.Point(4, 22);
             this.mainTab.Name = "mainTab";
             this.mainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mainTab.Size = new System.Drawing.Size(729, 620);
+            this.mainTab.Size = new System.Drawing.Size(1095, 916);
             this.mainTab.TabIndex = 0;
             this.mainTab.Text = "Scraper";
             // 
-            // button2
+            // splitContainer3
             // 
-            this.button2.Location = new System.Drawing.Point(550, 139);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 62);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Stop Scrape";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer3.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // button3
+            // splitContainer3.Panel1
             // 
-            this.button3.Location = new System.Drawing.Point(631, 139);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 62);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Start Scrape";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.splitContainer3.Panel1.Controls.Add(this.button1);
+            this.splitContainer3.Panel1.Controls.Add(this.trackBar3);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.label3);
+            this.splitContainer3.Panel1.Controls.Add(this.trackBar1);
+            this.splitContainer3.Panel1.Controls.Add(this.trackBar2);
+            this.splitContainer3.Panel1.Controls.Add(this.startButton);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Controls.Add(this.button3);
+            this.splitContainer3.Panel1.Controls.Add(this.label6);
+            this.splitContainer3.Panel1.Controls.Add(this.button2);
+            this.splitContainer3.Panel1.Controls.Add(this.button4);
+            this.splitContainer3.Panel1.Controls.Add(this.label4);
+            this.splitContainer3.Panel1.Controls.Add(this.button5);
+            this.splitContainer3.Panel1.Controls.Add(this.label5);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
+            this.splitContainer3.Size = new System.Drawing.Size(1089, 910);
+            this.splitContainer3.SplitterDistance = 257;
+            this.splitContainer3.TabIndex = 15;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(550, 36);
+            this.button1.Location = new System.Drawing.Point(19, 21);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 62);
+            this.button1.Size = new System.Drawing.Size(75, 43);
             this.button1.TabIndex = 3;
             this.button1.Text = "Stop Scrape";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // startButton
+            // trackBar3
             // 
-            this.startButton.Location = new System.Drawing.Point(631, 36);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(75, 62);
-            this.startButton.TabIndex = 2;
-            this.startButton.Text = "Start Scrape";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.AutoSize = false;
-            this.trackBar1.Location = new System.Drawing.Point(142, 6);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(136, 23);
-            this.trackBar1.TabIndex = 1;
+            this.trackBar3.AutoSize = false;
+            this.trackBar3.Location = new System.Drawing.Point(348, 183);
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(136, 23);
+            this.trackBar3.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(10, 13);
+            this.label1.Location = new System.Drawing.Point(216, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(116, 13);
+            this.label1.Size = new System.Drawing.Size(107, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Max Number to Scrape";
+            this.label1.Text = "Max Listing to Return";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(216, 190);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Max Numbers to Return";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.Location = new System.Drawing.Point(348, 29);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(136, 23);
+            this.trackBar1.TabIndex = 1;
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.AutoSize = false;
+            this.trackBar2.Location = new System.Drawing.Point(348, 106);
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(136, 23);
+            this.trackBar2.TabIndex = 12;
+            // 
+            // startButton
+            // 
+            this.startButton.Location = new System.Drawing.Point(100, 21);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 43);
+            this.startButton.TabIndex = 2;
+            this.startButton.Text = "Start Scrape";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(216, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Max Listing to Return";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(100, 98);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 43);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Start Scrape";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(8, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(181, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Extract Numbers from Contact Pages";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(19, 98);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 43);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Stop Scrape";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(19, 175);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 43);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Stop Scrape";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(49, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Search for Listings";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(100, 175);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 43);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Start Scrape";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(16, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Search Listing for Contact Pages";
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.textBox5);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.splitContainer5);
+            this.splitContainer4.Size = new System.Drawing.Size(1089, 649);
+            this.splitContainer4.SplitterDistance = 329;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox5.Location = new System.Drawing.Point(0, 0);
+            this.textBox5.Multiline = true;
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox5.Size = new System.Drawing.Size(329, 649);
+            this.textBox5.TabIndex = 2;
+            // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.tbScrape);
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.textBox4);
+            this.splitContainer5.Size = new System.Drawing.Size(756, 649);
+            this.splitContainer5.SplitterDistance = 373;
+            this.splitContainer5.TabIndex = 0;
+            // 
+            // tbScrape
+            // 
+            this.tbScrape.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbScrape.Location = new System.Drawing.Point(0, 0);
+            this.tbScrape.Multiline = true;
+            this.tbScrape.Name = "tbScrape";
+            this.tbScrape.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbScrape.Size = new System.Drawing.Size(373, 649);
+            this.tbScrape.TabIndex = 1;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox4.Location = new System.Drawing.Point(0, 0);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox4.Size = new System.Drawing.Size(379, 649);
+            this.textBox4.TabIndex = 2;
             // 
             // browserTab
             // 
@@ -169,7 +352,7 @@
             this.browserTab.Location = new System.Drawing.Point(4, 22);
             this.browserTab.Name = "browserTab";
             this.browserTab.Padding = new System.Windows.Forms.Padding(3);
-            this.browserTab.Size = new System.Drawing.Size(729, 620);
+            this.browserTab.Size = new System.Drawing.Size(1095, 916);
             this.browserTab.TabIndex = 1;
             this.browserTab.Text = "Browser Preview";
             this.browserTab.UseVisualStyleBackColor = true;
@@ -181,70 +364,17 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.Size = new System.Drawing.Size(723, 614);
+            this.webBrowser1.Size = new System.Drawing.Size(1089, 910);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("http://www.craigslist.org/about/sites#US", System.UriKind.Absolute);
             this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
-            // 
-            // outputTab
-            // 
-            this.outputTab.Controls.Add(this.splitContainer2);
-            this.outputTab.Location = new System.Drawing.Point(4, 22);
-            this.outputTab.Name = "outputTab";
-            this.outputTab.Padding = new System.Windows.Forms.Padding(3);
-            this.outputTab.Size = new System.Drawing.Size(729, 620);
-            this.outputTab.TabIndex = 2;
-            this.outputTab.Text = "Scrape Output";
-            this.outputTab.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.scrapeOutputMainSplit);
-            this.splitContainer2.Size = new System.Drawing.Size(723, 614);
-            this.splitContainer2.SplitterDistance = 60;
-            this.splitContainer2.TabIndex = 2;
-            // 
-            // scrapeOutputMainSplit
-            // 
-            this.scrapeOutputMainSplit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrapeOutputMainSplit.Location = new System.Drawing.Point(0, 0);
-            this.scrapeOutputMainSplit.Name = "scrapeOutputMainSplit";
-            this.scrapeOutputMainSplit.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // scrapeOutputMainSplit.Panel1
-            // 
-            this.scrapeOutputMainSplit.Panel1.Controls.Add(this.tbScrape);
-            // 
-            // scrapeOutputMainSplit.Panel2
-            // 
-            this.scrapeOutputMainSplit.Panel2.Controls.Add(this.textBox4);
-            this.scrapeOutputMainSplit.Size = new System.Drawing.Size(723, 550);
-            this.scrapeOutputMainSplit.SplitterDistance = 275;
-            this.scrapeOutputMainSplit.TabIndex = 0;
-            // 
-            // tbScrape
-            // 
-            this.tbScrape.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbScrape.Location = new System.Drawing.Point(0, 0);
-            this.tbScrape.Multiline = true;
-            this.tbScrape.Name = "tbScrape";
-            this.tbScrape.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbScrape.Size = new System.Drawing.Size(723, 275);
-            this.tbScrape.TabIndex = 0;
             // 
             // optionsTab
             // 
             this.optionsTab.Location = new System.Drawing.Point(4, 22);
             this.optionsTab.Name = "optionsTab";
             this.optionsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.optionsTab.Size = new System.Drawing.Size(729, 620);
+            this.optionsTab.Size = new System.Drawing.Size(1095, 916);
             this.optionsTab.TabIndex = 3;
             this.optionsTab.Text = "Options";
             this.optionsTab.UseVisualStyleBackColor = true;
@@ -296,89 +426,36 @@
             this.textBox3.Size = new System.Drawing.Size(359, 289);
             this.textBox3.TabIndex = 1;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(577, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Pull listing pages";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(579, 123);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Pull Contact Pages";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(579, 223);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Extract Numbers";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(550, 239);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 62);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Stop Scrape";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(631, 239);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 62);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Start Scrape";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // textBox4
-            // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(0, 0);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(723, 271);
-            this.textBox4.TabIndex = 1;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 646);
+            this.ClientSize = new System.Drawing.Size(1103, 942);
             this.Controls.Add(this.mainTabWindow);
             this.Name = "Form1";
             this.Text = "Craigslist Scraper";
             this.mainTabWindow.ResumeLayout(false);
             this.mainTab.ResumeLayout(false);
-            this.mainTab.PerformLayout();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            this.splitContainer5.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
             this.browserTab.ResumeLayout(false);
-            this.outputTab.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.scrapeOutputMainSplit.Panel1.ResumeLayout(false);
-            this.scrapeOutputMainSplit.Panel1.PerformLayout();
-            this.scrapeOutputMainSplit.Panel2.ResumeLayout(false);
-            this.scrapeOutputMainSplit.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scrapeOutputMainSplit)).EndInit();
-            this.scrapeOutputMainSplit.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -395,7 +472,6 @@
         private System.Windows.Forms.TabPage mainTab;
         private System.Windows.Forms.TabPage browserTab;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.TabPage outputTab;
         private System.Windows.Forms.TabPage optionsTab;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
@@ -407,15 +483,21 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.SplitContainer scrapeOutputMainSplit;
-        private System.Windows.Forms.TextBox tbScrape;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.TextBox tbScrape;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }
 

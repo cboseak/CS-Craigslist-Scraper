@@ -21,10 +21,11 @@ namespace CS__Craigslist_Scraper
         List<string> extractedNumbers = new List<string>();
         bool firstTime = true;
         bool listingScrapeStarted = false;
-        bool numScrapeStarted = false;
+        bool individualPageScrape = false;
         bool numPageScrape = false;
         Regex listingIdPattern = new Regex(@"\d{10}");
-        Regex phoneNumberPattern1 = new Regex(@"\D(\d{3}\s\d{3}\s\d{4})\D");
+        Regex phoneNumberPattern = new Regex(@"\D(\d{3}\s\d{3}\s\d{4})\D");
+        Regex phoneNumberPattern1 = new Regex(@"^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$");
         public Form1()
         {
             InitializeComponent();
@@ -49,18 +50,28 @@ namespace CS__Craigslist_Scraper
                 webBrowser1.Navigate(new Uri(cityLinkQueue.ElementAt(0)) + "search/sss/");
                 listingLinkGrabber();
                 cityLinkQueue.Remove(cityLinkQueue.ElementAt(0));
+
             }
-            if (numScrapeStarted && individualListingQueue.Count > 0)
+            if (individualPageScrape && individualListingQueue.Count > 0)
             {
                 webBrowser1.Navigate(new Uri(individualListingQueue.ElementAt(0)));
                 numScraper();
                 individualListingQueue.Remove(individualListingQueue.ElementAt(0));
+
+                var lines = this.textBox5.Lines;
+                var newLines = lines.Skip(1);
+                this.textBox5.Lines = newLines.ToArray();
+
             }
             if (numPageScrape && numberPages.Count > 0)
             {
                 webBrowser1.Navigate(new Uri(numberPages.ElementAt(0)));
                 numExtractor();
                 numberPages.Remove(numberPages.ElementAt(0));
+
+                var lines = this.tbScrape.Lines;
+                var newLines = lines.Skip(1);
+                this.tbScrape.Lines = newLines.ToArray();
             }
         }
 
@@ -81,6 +92,7 @@ namespace CS__Craigslist_Scraper
                         if (listingIdPattern.IsMatch(item.GetAttribute("href").ToString()))
                         {
                             individualListingQueue.Add(item.GetAttribute("href").ToString());
+                            textBox5.AppendText(item.GetAttribute("href").ToString() + Environment.NewLine);
                         }
                 }
             }
@@ -99,33 +111,46 @@ namespace CS__Craigslist_Scraper
                 if (listingIdPattern.IsMatch(item.GetAttribute("href").ToString()) && item.GetAttribute("href").ToString().Contains("fb"))
                 {
                     numberPages.Add(item.GetAttribute("href").ToString());
-                    tbScrape.AppendText(item.GetAttribute("href").ToString() + Environment.NewLine);
-
+                    numberPages = numberPages.Distinct().ToList(); //remove duplcates as it goes along
+                    foreach (var i in numberPages)
+                    {
+                        tbScrape.AppendText(i + Environment.NewLine);
+                    }
                 }
             }
-
         }
 
         private void numExtractor()
         {
-            if(phoneNumberPattern1.IsMatch(webBrowser1.DocumentText))
+            Regex phoneNumberPattern = new Regex(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$");
+            Regex digitsOnly = new Regex(@"[^\d]");
+            var numToCheck = webBrowser1.DocumentText.ToString().Split(' ');
+            foreach(var word in numToCheck)
             {
-                extractedNumbers.Add(phoneNumberPattern1.Match(webBrowser1.DocumentText).ToString());
-                textBox4.AppendText(phoneNumberPattern1.Match(webBrowser1.DocumentText).ToString() + Environment.NewLine);
+                digitsOnly.Replace(word, "");
             }
+            var match =
+                from i in numToCheck
+                where phoneNumberPattern.IsMatch(i)
+                select i;
 
+            foreach (var i in match)
+            {
+                extractedNumbers.Add(i);
+                textBox4.AppendText(i + Environment.NewLine);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             webBrowser1.Refresh();
             listingScrapeStarted = false;
-            numScrapeStarted = true;
+            individualPageScrape = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            numScrapeStarted = false;
+            individualPageScrape = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -137,14 +162,30 @@ namespace CS__Craigslist_Scraper
 
         private void button4_Click(object sender, EventArgs e)
         {
-            numScrapeStarted = false;
+            individualPageScrape = false;
             listingScrapeStarted = false;
+            numPageScrape = true;
             webBrowser1.Refresh();
-            numPageScrape = false;
             button4.Enabled = false;
             button5.Enabled = true;
         }
-
+        private void statusChecker()
+        {
+            if (cityLinkQueue.Count == 0)
+            {
+                listingScrapeStarted = false;
+            }
+            if (individualListingQueue.Count == 0)
+            {
+                individualPageScrape = false;
+            }
+            if (numberPages.Count == 0)
+            {
+                listingScrapeStarted = false;
+                numPageScrape = false;
+                individualPageScrape = false;
+            }
+        }
 
     }
 }
