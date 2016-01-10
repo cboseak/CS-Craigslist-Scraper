@@ -23,7 +23,12 @@ namespace CS__Craigslist_Scraper
         ConcurrentQueue<string> numberPages = new ConcurrentQueue<string>();
         string lastSuccessfulUrl;
         CancellationTokenSource cts = new CancellationTokenSource();
-        List<string> extractedNumbers = new List<string>();
+        ConcurrentBag<string> extractedNumbers = new ConcurrentBag<string>();
+        ParallelLoopState state;
+        bool directoryScrapeActive = false;
+        bool listingScrapeActive = false;
+        bool numberPageScrape = false;
+        bool numberScrapeActive = false;
 
         public Form1()
         {
@@ -133,9 +138,11 @@ namespace CS__Craigslist_Scraper
 
         private async void button3_Click(object sender, EventArgs e)
         {
-            //var counter = 0;
-            await Task.Run(() => {
-                Parallel.ForEach(cityLinkQueue, item =>
+            cityLinkQueue = new ConcurrentQueue<string>(cityLinkQueue.Distinct().ToList());
+            directoryScrapeActive = true;
+            await Task.Run(() =>
+            {
+                Parallel.ForEach(cityLinkQueue, (item, state) =>
                 {
 
                     Uri uri = new Uri("http://craigslist.org");
@@ -163,18 +170,11 @@ namespace CS__Craigslist_Scraper
                     {
                         label2.Text = listingDirectoryQueue.Count().ToString();
                     }));
-                    //counter++;
-                    //if(counter % 20 == 0)
-                    //{
-                    //    string[] tempArr = listingDirectoryQueue.ToArray();
-                    //    textBox5.BeginInvoke(new Action(() =>
-                    //    {
-                    //        textBox5.Lines = tempArr;
-                    //    }));
-                    //}
+                    if (!directoryScrapeActive)
+                        state.Break();
                 });
-            },cts.Token);
-
+            }, cts.Token);
+            directoryScrapeActive = false;
             MessageBox.Show("Done");
             cts = new CancellationTokenSource();
         }
@@ -186,9 +186,12 @@ namespace CS__Craigslist_Scraper
 
         private async void button5_Click(object sender, EventArgs e)
         {
+            listingDirectoryQueue = new ConcurrentQueue<string>(listingDirectoryQueue.Distinct().ToList());
+            listingScrapeActive = true;
             await Task.Run(() =>
             {
-                Parallel.ForEach(listingDirectoryQueue, item =>
+
+                Parallel.ForEach(listingDirectoryQueue, (item, state) =>
                 {
                     Uri uri = new Uri("http://craigslist.org");
                     WebClient wb = new WebClient();
@@ -215,12 +218,15 @@ namespace CS__Craigslist_Scraper
                     {
                         label1.Text = individualListingQueue.Count().ToString();
                     }));
+                    if (!listingScrapeActive)
+                        state.Break();
                 });
             }, cts.Token);
-
+            listingScrapeActive = false;
             MessageBox.Show("Done");
             cts = new CancellationTokenSource();
         }
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -229,6 +235,114 @@ namespace CS__Craigslist_Scraper
         private void statusChecker()
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            listingScrapeActive = false;
+        }
+
+        private async void button2_Click_1(object sender, EventArgs e)
+        {
+            individualListingQueue = new ConcurrentQueue<string>(individualListingQueue.Distinct().ToList());
+            numberPageScrape = true;
+            await Task.Run(() =>
+            {
+
+                Parallel.ForEach(individualListingQueue, (item, state) =>
+                {
+                    item = ScraperLogic.urlFormatChecker(item);
+                    Uri uri = new Uri("http://craigslist.org");
+                    WebClient wb = new WebClient();
+                    uri = new Uri(item);
+                    var host = uri.Host;
+                    string html;
+                    try
+                    {
+                        html = wb.DownloadString(item);
+                        lastSuccessfulUrl = item;
+                    }
+                    catch
+                    {
+                        html = wb.DownloadString(lastSuccessfulUrl);
+                    }
+
+                    item = ScraperLogic.urlFormatChecker(item);
+                    List<string> temp = ScraperLogic.FindNumberPages(html, item);
+                    foreach (var i in temp)
+                    {
+                        numberPages.Enqueue(i);
+                    }
+                    label7.BeginInvoke(new Action(() =>
+                    {
+                        label7.Text = numberPages.Count().ToString();
+                    }));
+                    if (!numberPageScrape)
+                        state.Break();
+                });
+            }, cts.Token);
+            numberPageScrape = false;
+            MessageBox.Show("Done");
+            cts = new CancellationTokenSource();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            numberPageScrape = false;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            directoryScrapeActive = false;
+        }
+
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            numberPages = new ConcurrentQueue<string>(numberPages.Distinct().ToList());
+            numberScrapeActive = true;
+            await Task.Run(() =>
+            {
+
+                Parallel.ForEach(numberPages, (item, state) =>
+                {
+                    item = ScraperLogic.urlFormatChecker(item);
+                    WebClient wb = new WebClient();
+                    string html;
+                    try
+                    {
+                        html = wb.DownloadString(item);
+                        lastSuccessfulUrl = item;
+                    }
+                    catch
+                    {
+                        html = wb.DownloadString(lastSuccessfulUrl);
+                    }
+
+                    List<string> temp = ScraperLogic.NumberExtractor2(html);
+                    foreach (var i in temp)
+                    {
+                        extractedNumbers.Add(i);
+                    }
+                    string[] tempArr = extractedNumbers.ToArray();
+                    label8.BeginInvoke(new Action(() =>
+                    {
+                        label8.Text = extractedNumbers.Count().ToString();
+                    }));
+                    textBox4.BeginInvoke(new Action(() => {
+                        textBox4.Lines = tempArr;
+                    }));
+                    if (!numberScrapeActive)
+                        state.Break();
+                });
+            }, cts.Token);
+            numberScrapeActive = false;
+            MessageBox.Show("Done");
+            cts = new CancellationTokenSource();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            numberScrapeActive = false;
         }
 
 
