@@ -82,11 +82,13 @@ namespace CS__Craigslist_Scraper
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            WebClient wb = new WebClient();
+            using(WebClient wb = new WebClient())
+            {
             var html = wb.DownloadString("http://www.craigslist.org/about/sites#US");
             List<string> temp = ScraperLogic.FindCities(html, "http://www.craigslist.org");
             cityLinkQueue = new ConcurrentQueue<string>(temp);
             MessageBox.Show("Done");
+            }
         }
 
         private void listingLinkGrabber()
@@ -146,33 +148,34 @@ namespace CS__Craigslist_Scraper
                 {
 
                     Uri uri = new Uri("http://craigslist.org");
-                    WebClient wb = new WebClient();
-                    uri = new Uri(item);
-                    var host = uri.Host;
-                    string html;
-                    try
+                    using(WebClient wb = new WebClient())
                     {
-                        html = wb.DownloadString(item);
-                        lastSuccessfulUrl = item;
-                    }
-                    catch
-                    {
-                        html = wb.DownloadString(lastSuccessfulUrl);
-                    }
-
-                    item = ScraperLogic.urlFormatChecker(item);
-                    List<string> temp = ScraperLogic.FindPagesWithListings(html, item);
-                    foreach (var i in temp)
-                    {
-                        listingDirectoryQueue.Enqueue(i);
-                    }
-                    label2.BeginInvoke(new Action(() =>
-                    {
-                        label2.Text = listingDirectoryQueue.Count().ToString();
-                    }));
-                    if (!directoryScrapeActive)
-                        state.Break();
-                });
+                        uri = new Uri(item);
+                        var host = uri.Host;
+                        string html;
+                        try
+                        {
+                            html = wb.DownloadString(item);
+                            lastSuccessfulUrl = item;
+                        }
+                        catch
+                        {
+                            html = wb.DownloadString(lastSuccessfulUrl);
+                        }
+    
+                        item = ScraperLogic.urlFormatChecker(item);
+                        List<string> temp = ScraperLogic.FindPagesWithListings(html, item);
+                        foreach (var i in temp)
+                        {
+                            listingDirectoryQueue.Enqueue(i);
+                        }
+                        label2.BeginInvoke(new Action(() =>
+                        {
+                            label2.Text = listingDirectoryQueue.Count().ToString();
+                        }));
+                        if (!directoryScrapeActive)
+                            state.Break();
+                    }});
             }, cts.Token);
             directoryScrapeActive = false;
             MessageBox.Show("Done");
@@ -194,33 +197,34 @@ namespace CS__Craigslist_Scraper
                 Parallel.ForEach(listingDirectoryQueue, (item, state) =>
                 {
                     Uri uri = new Uri("http://craigslist.org");
-                    WebClient wb = new WebClient();
-                    uri = new Uri(item);
-                    var host = uri.Host;
-                    string html;
-                    try
+                    using(WebClient wb = new WebClient())
                     {
-                        html = wb.DownloadString(item);
-                        lastSuccessfulUrl = item;
-                    }
-                    catch
-                    {
-                        html = wb.DownloadString(lastSuccessfulUrl);
-                    }
-
-                    item = ScraperLogic.urlFormatChecker(item);
-                    List<string> temp = ScraperLogic.FindIndividualListings(html, item);
-                    foreach (var i in temp)
-                    {
-                        individualListingQueue.Enqueue(i);
-                    }
-                    label1.BeginInvoke(new Action(() =>
-                    {
-                        label1.Text = individualListingQueue.Count().ToString();
-                    }));
-                    if (!listingScrapeActive)
-                        state.Break();
-                });
+                        uri = new Uri(item);
+                        var host = uri.Host;
+                        string html;
+                        try
+                        {
+                            html = wb.DownloadString(item);
+                            lastSuccessfulUrl = item;
+                        }
+                        catch
+                        {
+                            html = wb.DownloadString(lastSuccessfulUrl);
+                        }
+    
+                        item = ScraperLogic.urlFormatChecker(item);
+                        List<string> temp = ScraperLogic.FindIndividualListings(html, item);
+                        foreach (var i in temp)
+                        {
+                            individualListingQueue.Enqueue(i);
+                        }
+                        label1.BeginInvoke(new Action(() =>
+                        {
+                            label1.Text = individualListingQueue.Count().ToString();
+                        }));
+                        if (!listingScrapeActive)
+                            state.Break();
+                    }});
             }, cts.Token);
             listingScrapeActive = false;
             MessageBox.Show("Done");
@@ -253,33 +257,34 @@ namespace CS__Craigslist_Scraper
                 {
                     item = ScraperLogic.urlFormatChecker(item);
                     Uri uri = new Uri("http://craigslist.org");
-                    WebClient wb = new WebClient();
-                    uri = new Uri(item);
-                    var host = uri.Host;
-                    string html;
-                    try
+                    using(WebClient wb = new WebClient())
                     {
-                        html = wb.DownloadString(item);
-                        lastSuccessfulUrl = item;
-                    }
-                    catch
-                    {
-                        html = wb.DownloadString(lastSuccessfulUrl);
-                    }
-
-                    item = ScraperLogic.urlFormatChecker(item);
-                    List<string> temp = ScraperLogic.FindNumberPages(html, item);
-                    foreach (var i in temp)
-                    {
-                        numberPages.Enqueue(i);
-                    }
-                    label7.BeginInvoke(new Action(() =>
-                    {
-                        label7.Text = numberPages.Count().ToString();
-                    }));
-                    if (!numberPageScrape)
-                        state.Break();
-                });
+                        uri = new Uri(item);
+                        var host = uri.Host;
+                        string html;
+                        try
+                        {
+                            html = wb.DownloadString(item);
+                            lastSuccessfulUrl = item;
+                        }
+                        catch
+                        {
+                            html = wb.DownloadString(lastSuccessfulUrl);
+                        }
+    
+                        item = ScraperLogic.urlFormatChecker(item);
+                        List<string> temp = ScraperLogic.FindNumberPages(html, item);
+                        foreach (var i in temp)
+                        {
+                            numberPages.Enqueue(i);
+                        }
+                        label7.BeginInvoke(new Action(() =>
+                        {
+                            label7.Text = numberPages.Count().ToString();
+                        }));
+                        if (!numberPageScrape)
+                            state.Break();
+                    }});
             }, cts.Token);
             numberPageScrape = false;
             MessageBox.Show("Done");
@@ -306,34 +311,35 @@ namespace CS__Craigslist_Scraper
                 Parallel.ForEach(numberPages, (item, state) =>
                 {
                     item = ScraperLogic.urlFormatChecker(item);
-                    WebClient wb = new WebClient();
-                    string html;
-                    try
+                    using(WebClient wb = new WebClient())
                     {
-                        html = wb.DownloadString(item);
-                        lastSuccessfulUrl = item;
-                    }
-                    catch
-                    {
-                        html = wb.DownloadString(lastSuccessfulUrl);
-                    }
-
-                    List<string> temp = ScraperLogic.NumberExtractor2(html);
-                    foreach (var i in temp)
-                    {
-                        extractedNumbers.Add(i);
-                    }
-                    string[] tempArr = extractedNumbers.ToArray();
-                    label8.BeginInvoke(new Action(() =>
-                    {
-                        label8.Text = extractedNumbers.Count().ToString();
-                    }));
-                    textBox4.BeginInvoke(new Action(() => {
-                        textBox4.Lines = tempArr;
-                    }));
-                    if (!numberScrapeActive)
-                        state.Break();
-                });
+                        string html;
+                        try
+                        {
+                            html = wb.DownloadString(item);
+                            lastSuccessfulUrl = item;
+                        }
+                        catch
+                        {
+                            html = wb.DownloadString(lastSuccessfulUrl);
+                        }
+    
+                        List<string> temp = ScraperLogic.NumberExtractor2(html);
+                        foreach (var i in temp)
+                        {
+                            extractedNumbers.Add(i);
+                        }
+                        string[] tempArr = extractedNumbers.ToArray();
+                        label8.BeginInvoke(new Action(() =>
+                        {
+                            label8.Text = extractedNumbers.Count().ToString();
+                        }));
+                        textBox4.BeginInvoke(new Action(() => {
+                            textBox4.Lines = tempArr;
+                        }));
+                        if (!numberScrapeActive)
+                            state.Break();
+                    }});
             }, cts.Token);
             numberScrapeActive = false;
             MessageBox.Show("Done");
